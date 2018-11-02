@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aotain.message.dao.MonitorTaskInfoDao">
+
+	<insert id="insertMonitorTask" parameterType="com.aotain.message.entity.MonitorTaskInfo">
+		replace into
+		zf_v2_monitor_task_info(MONITOR_TASK_ID,monitor_name
+		,monitor_params
+		,task_type
+		,task_subtype
+		,task_params
+		,status
+		,create_time
+		,modify_time)
+		values(#{monitorTaskId},#{monitorName,jdbcType=VARCHAR},#{monitorParams,jdbcType=VARCHAR},#{taskType}
+		,#{taskSubType},#{taskParams,jdbcType=VARCHAR},#{status},#{createTime}
+		,#{modifyTime})
+	</insert>
+	
+	<update id="updateMonitorTask" parameterType="com.aotain.message.entity.MonitorTaskInfo">
+		update zf_v2_monitor_task_info
+		set status = #{status},
+		modify_time = #{modifyTime}
+		where MONITOR_TASK_ID = #{monitorTaskId}
+	</update>
+
+
+	<!-- 将DPI策略发送状态存入到数据库中 -->
+	<insert id="insertPolicyStatus" parameterType="com.aotain.message.entity.DpiV1PolicyStatus" >
+		insert into zf_v2_policy_status
+		(MESSAGE_TYPE, MESSAGE_NO, DPI_IP, STATUS, CREATE_TIME)
+		values
+		(#{messageType}, #{messageNo}, #{dpiIp}, #{status},#{createTime})
+	</insert>
+
+	<!-- 将EU策略发送状态更新到数据库中 -->
+	<update id="updatePolicyStatus" parameterType="com.aotain.message.entity.DpiV1PolicyStatus" >
+		update zf_v2_policy_status
+		set status= #{status}
+		,CREATE_TIME=#{createTime}
+		where MESSAGE_TYPE=#{messageType}
+		and MESSAGE_NO=#{messageNo}
+		and DPI_IP = #{dpiIp}
+	</update>
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aotain.message.dao.MonitorTaskAlarmDao">
+
+
+	<insert id="insertMonitorTaskAlarm" useGeneratedKeys="true" keyProperty="alarmId"
+		parameterType="com.aotain.message.entity.MonitorTaskAlarm">
+		insert into
+		zf_v2_monitor_task_alarm(
+		MONITOR_TASK_ID
+		,TASK_ID
+		,TASK_TYPE
+		,TASK_SUBTYPE
+		,ALARM_CONTENT
+		,ALARM_PARAMS
+		,ALARM_TIME
+		,DEAL_STATUS
+		)
+		values(
+		 #{monitorTaskId}
+		,#{taskId}
+		,#{taskType}
+		,#{taskSubtype}
+		,#{alarmContent}
+		,#{alarmParams}
+		,#{alarmTime}
+		,#{dealStatus}
+		)
+	</insert>
+
+</mapper> 

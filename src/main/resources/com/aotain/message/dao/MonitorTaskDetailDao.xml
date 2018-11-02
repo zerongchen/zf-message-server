@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aotain.message.dao.MonitorTaskDetailDao">
+
+	<select id="insertMonitorTaskDetail" parameterType="com.aotain.message.entity.MonitorTaskDetail">
+		insert into
+		zf_v2_monitor_task_detail(TASK_ID,MONITOR_TASK_ID
+		,TASK_NAME
+		,MONITOR_PARAMS
+		,TASK_PARAMS
+		,DATA_ID
+		,TASK_TYPE
+		,TASK_SUBTYPE
+		,STATUS
+		,CREATETIME
+		,COMPLETETIME)
+		values(#{taskId},#{monitorTaskId},#{taskName,jdbcType=VARCHAR},#{monitorParams,jdbcType=VARCHAR}
+		,#{taskParams},#{dataId},#{taskType},#{taskSubType},#{status},#{createTime},#{completeTime}
+		)
+	</select>
+</mapper> 
